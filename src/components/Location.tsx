@@ -9,9 +9,8 @@ type LocationState = {
 type LocationProps = {
 }
 
-
 class MyLocation extends Component<LocationProps, LocationState> {
-    constructor(props: LocationProps){
+    constructor(props: LocationProps) {
         super(props)
         this.state = {
             currentLat: 0,
@@ -20,7 +19,7 @@ class MyLocation extends Component<LocationProps, LocationState> {
     }
 
     handleFetch = (): void => {
-        if (navigator.geolocation){
+        if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(this.showLocation);
         } else {
             console.log('Geolocation is not available.')
@@ -28,23 +27,22 @@ class MyLocation extends Component<LocationProps, LocationState> {
     }
 
 
-    showLocation = (position: {[k: string]: any}): void  => {
+    showLocation = (position: { [k: string]: any }): void => {
         this.setState({
             currentLat: position.coords.latitude,
             currentLong: position.coords.longitude
         })
-        console.log(`My position is ${this.state.currentLat}, ${this.state.currentLong}`)
     }
 
     componentDidMount() {
         this.handleFetch()
     }
-    
-    render(){
-        return(
+
+    render() {
+        return (
             <div>
-                <h1>My Location is currently...</h1>
-                <Weather lat={this.state.currentLat} long={this.state.currentLong}/>
+                <h1>My Local Weather</h1>
+                <Weather lat={this.state.currentLat} long={this.state.currentLong} />
             </div>
         )
     }
